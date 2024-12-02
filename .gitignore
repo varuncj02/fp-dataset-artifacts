@@ -1,2 +1,6 @@
 *.pyc
 output/
+trained_model/
+finetuned_model/
+eval_output/checkpoint-189/
+contrast_output/checkpoint-189/
