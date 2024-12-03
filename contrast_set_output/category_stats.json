@@ -1,0 +1,6 @@
+{
+    "Negation": 0.4,
+    "Long Hypothesis": 0.0,
+    "Unrelated Hypothesis": 0.5,
+    "Word Overlap <= 3": 0.7
+}
