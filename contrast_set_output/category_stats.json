@@ -1,6 +1,34 @@
 {
-    "Negation": 0.4,
-    "Long Hypothesis": 0.0,
-    "Unrelated Hypothesis": 0.5,
-    "Word Overlap <= 3": 0.7
+    "Negation": {
+        "accuracy": 0.4,
+        "precision": 0.4,
+        "recall": 0.6666666666666666,
+        "f1": 0.2,
+        "error_count": 6,
+        "example_count": 10
+    },
+    "Long Hypothesis": {
+        "accuracy": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "error_count": 5,
+        "example_count": 5
+    },
+    "Unrelated Hypothesis": {
+        "accuracy": 0.5,
+        "precision": 0.375,
+        "recall": 0.46153846153846156,
+        "f1": 0.20689655172413793,
+        "error_count": 6,
+        "example_count": 12
+    },
+    "Word Overlap <= 3": {
+        "accuracy": 0.7,
+        "precision": 0.5384615384615384,
+        "recall": 0.45161290322580644,
+        "f1": 0.343859649122807,
+        "error_count": 6,
+        "example_count": 20
+    }
 }

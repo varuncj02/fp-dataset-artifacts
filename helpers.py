@@ -5,24 +5,26 @@ from transformers import Trainer, EvalPrediction
 from transformers.trainer_utils import PredictionOutput
 from typing import Tuple
 from tqdm.auto import tqdm
-
+from collections import Counter, defaultdict
+import pandas as pd
 QA_MAX_ANSWER_LENGTH = 30
 
 
-# This function preprocesses an NLI dataset, tokenizing premises and hypotheses.
-def prepare_dataset_nli(examples, tokenizer, max_seq_length=None):
-    max_seq_length = tokenizer.model_max_length if max_seq_length is None else max_seq_length
-
-    tokenized_examples = tokenizer(
-        examples['premise'],
-        examples['hypothesis'],
+def prepare_dataset_nli(examples, tokenizer, max_length):
+    """
+    Prepares NLI data for Electra by tokenizing premise and hypothesis.
+    """
+    # Tokenize inputs
+    inputs = tokenizer(
+        examples["premise"],
+        examples["hypothesis"],
+        max_length=max_length,
         truncation=True,
-        max_length=max_seq_length,
-        padding='max_length'
+        padding="max_length"
     )
-
-    tokenized_examples['label'] = examples['label']
-    return tokenized_examples
+    # Add labels
+    inputs["labels"] = examples["label"]
+    return inputs
 
 
 # This function computes sentence-classification accuracy.
@@ -34,6 +36,8 @@ def compute_accuracy(eval_preds: EvalPrediction):
             axis=1) == eval_preds.label_ids).astype(
             np.float32).mean().item()
     }
+
+
 
 
 # This function preprocesses a question answering dataset, tokenizing the question and context text
@@ -249,6 +253,88 @@ def postprocess_qa_predictions(examples,
 
         all_predictions[example["id"]] = predictions[0]["text"]
     return all_predictions
+
+
+def analyze_errors(eval_preds, original_dataset):
+    """
+    Analyze errors made by the model and identify patterns in the mistakes.
+    """
+    pred_labels = eval_preds.predictions.argmax(axis=1)
+    true_labels = eval_preds.label_ids
+
+    # Extract errors
+    errors = []
+    for i, (pred, true) in enumerate(zip(pred_labels, true_labels)):
+        if pred != true:
+            example = original_dataset[i]
+            errors.append({
+                "premise": example["premise"],
+                "hypothesis": example["hypothesis"],
+                "true_label": int(true),
+                "predicted_label": int(pred)
+            })
+
+    # Analyze challenging patterns
+    challenging_patterns = Counter()
+    for error in errors:
+        if "not" in error["hypothesis"].lower():
+            challenging_patterns["contains_not"] += 1
+        if "never" in error["hypothesis"].lower():
+            challenging_patterns["contains_never"] += 1
+        if len(error["hypothesis"].split()) > 15:  # Example for long sentences
+            challenging_patterns["long_hypothesis"] += 1
+
+    # Misclassification types
+    misclassification_types = Counter(f"{true}->{pred}" for pred, true in zip(pred_labels, true_labels) if pred != true)
+
+    return errors, challenging_patterns, misclassification_types
+
+
+def analyze_mistakes(eval_preds, original_dataset):
+    """
+    Analyze model's mistakes on a dataset using the original data for reference.
+    """
+    pred_labels = eval_preds.predictions.argmax(axis=1)
+    true_labels = eval_preds.label_ids
+
+    # Extract mistakes using original dataset
+    mistakes = []
+    for i, (pred, true) in enumerate(zip(pred_labels, true_labels)):
+        if pred != true:
+            example = original_dataset[i]
+            mistakes.append({
+                "premise": example["premise"],  # Reference from original dataset
+                "hypothesis": example["hypothesis"],
+                "true_label": true,
+                "predicted_label": pred
+            })
+
+    # Count challenging patterns
+    from collections import Counter
+    challenging_patterns = Counter()
+    for mistake in mistakes:
+        if "not" in mistake["hypothesis"].lower():
+            challenging_patterns["contains_not"] += 1
+        if "never" in mistake["hypothesis"].lower():
+            challenging_patterns["contains_never"] += 1
+
+    return mistakes, challenging_patterns
+
+
+def analyze_misclassification_types(eval_preds, dataset):
+    """
+    Analyze specific misclassification types.
+    """
+    pred_labels = eval_preds.predictions.argmax(axis=1)
+    true_labels = eval_preds.label_ids
+
+    misclassification_types = defaultdict(int)
+    for true, pred in zip(true_labels, pred_labels):
+        if true != pred:
+            misclassification_types[f"{true}->{pred}"] += 1
+
+    return misclassification_types
+
 
 
 # Adapted from https://github.com/huggingface/transformers/blob/master/examples/pytorch/question-answering/trainer_qa.py

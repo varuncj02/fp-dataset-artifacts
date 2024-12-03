@@ -1,0 +1,277 @@
+{
+    "Negation": {
+        "correct_examples": [
+            {
+                "premise": "The astrophysicist presented her findings on black hole dynamics at the conference.",
+                "hypothesis": "A chef prepared a multi-course gourmet dinner featuring molecular gastronomy techniques.",
+                "label": 2,
+                "predicted_label": 2,
+                "is_correct": true,
+                "contains_negation": true,
+                "is_long_hypothesis": false,
+                "word_overlap": 0,
+                "unrelatedness_score": 1.0,
+                "is_unrelated": true
+            },
+            {
+                "premise": "If it rains, the picnic will be canceled.",
+                "hypothesis": "The picnic will only happen if it does not rain.",
+                "label": 0,
+                "predicted_label": 0,
+                "is_correct": true,
+                "contains_negation": true,
+                "is_long_hypothesis": false,
+                "word_overlap": 3,
+                "unrelatedness_score": 0.6153846153846154,
+                "is_unrelated": false
+            },
+            {
+                "premise": "The judge dismissed the case due to insufficient evidence.",
+                "hypothesis": "The case was thrown out because there wasn\u2019t enough evidence.",
+                "label": 0,
+                "predicted_label": 0,
+                "is_correct": true,
+                "contains_negation": true,
+                "is_long_hypothesis": false,
+                "word_overlap": 3,
+                "unrelatedness_score": 0.8,
+                "is_unrelated": false
+            }
+        ],
+        "incorrect_examples": [
+            {
+                "premise": "The robot completed all tasks without a single error.",
+                "hypothesis": "The robot did not complete all tasks perfectly.",
+                "label": 1,
+                "predicted_label": 0,
+                "is_correct": false,
+                "contains_negation": true,
+                "is_long_hypothesis": false,
+                "word_overlap": 4,
+                "unrelatedness_score": 0.6923076923076923,
+                "is_unrelated": false
+            },
+            {
+                "premise": "Every single flower in the garden was blooming brightly.",
+                "hypothesis": "Not a single flower in the garden failed to bloom.",
+                "label": 0,
+                "predicted_label": 2,
+                "is_correct": false,
+                "contains_negation": true,
+                "is_long_hypothesis": false,
+                "word_overlap": 5,
+                "unrelatedness_score": 0.6428571428571428,
+                "is_unrelated": false
+            },
+            {
+                "premise": "The students are studying in the library.",
+                "hypothesis": "The students are sitting at tables in the library, reading books, and making notes for their exams while whispering to one another.",
+                "label": 0,
+                "predicted_label": 1,
+                "is_correct": false,
+                "contains_negation": true,
+                "is_long_hypothesis": true,
+                "word_overlap": 5,
+                "unrelatedness_score": 0.8260869565217391,
+                "is_unrelated": true
+            }
+        ]
+    },
+    "Long Hypothesis": {
+        "correct_examples": [],
+        "incorrect_examples": [
+            {
+                "premise": "The students are studying in the library.",
+                "hypothesis": "The students are sitting at tables in the library, reading books, and making notes for their exams while whispering to one another.",
+                "label": 0,
+                "predicted_label": 1,
+                "is_correct": false,
+                "contains_negation": true,
+                "is_long_hypothesis": true,
+                "word_overlap": 5,
+                "unrelatedness_score": 0.8260869565217391,
+                "is_unrelated": true
+            },
+            {
+                "premise": "The kids are playing soccer in the park.",
+                "hypothesis": "The kids are running across the grass in the park, kicking the soccer ball back and forth while laughing and cheering each other on.",
+                "label": 0,
+                "predicted_label": 1,
+                "is_correct": false,
+                "contains_negation": false,
+                "is_long_hypothesis": true,
+                "word_overlap": 6,
+                "unrelatedness_score": 0.7727272727272727,
+                "is_unrelated": false
+            },
+            {
+                "premise": "The explorer discovered ancient artifacts buried under the desert sands.",
+                "hypothesis": "The explorer, while trekking through the scorching heat of the desert, uncovered historical artifacts that were long forgotten and buried deep beneath the shifting sands.",
+                "label": 0,
+                "predicted_label": 1,
+                "is_correct": false,
+                "contains_negation": false,
+                "is_long_hypothesis": true,
+                "word_overlap": 5,
+                "unrelatedness_score": 0.8518518518518519,
+                "is_unrelated": true
+            }
+        ]
+    },
+    "Unrelated Hypothesis": {
+        "correct_examples": [
+            {
+                "premise": "The astrophysicist presented her findings on black hole dynamics at the conference.",
+                "hypothesis": "A chef prepared a multi-course gourmet dinner featuring molecular gastronomy techniques.",
+                "label": 2,
+                "predicted_label": 2,
+                "is_correct": true,
+                "contains_negation": true,
+                "is_long_hypothesis": false,
+                "word_overlap": 0,
+                "unrelatedness_score": 1.0,
+                "is_unrelated": true
+            },
+            {
+                "premise": "The politician discussed healthcare reform in his speech.",
+                "hypothesis": "A dancer performed a traditional folk routine at the festival.",
+                "label": 2,
+                "predicted_label": 2,
+                "is_correct": true,
+                "contains_negation": false,
+                "is_long_hypothesis": false,
+                "word_overlap": 0,
+                "unrelatedness_score": 0.9375,
+                "is_unrelated": true
+            },
+            {
+                "premise": "The librarian organized books by genre.",
+                "hypothesis": "A farmer harvested crops on a rainy morning.",
+                "label": 2,
+                "predicted_label": 2,
+                "is_correct": true,
+                "contains_negation": false,
+                "is_long_hypothesis": false,
+                "word_overlap": 0,
+                "unrelatedness_score": 1.0,
+                "is_unrelated": true
+            }
+        ],
+        "incorrect_examples": [
+            {
+                "premise": "The students are studying in the library.",
+                "hypothesis": "The students are sitting at tables in the library, reading books, and making notes for their exams while whispering to one another.",
+                "label": 0,
+                "predicted_label": 1,
+                "is_correct": false,
+                "contains_negation": true,
+                "is_long_hypothesis": true,
+                "word_overlap": 5,
+                "unrelatedness_score": 0.8260869565217391,
+                "is_unrelated": true
+            },
+            {
+                "premise": "The explorer discovered ancient artifacts buried under the desert sands.",
+                "hypothesis": "The explorer, while trekking through the scorching heat of the desert, uncovered historical artifacts that were long forgotten and buried deep beneath the shifting sands.",
+                "label": 0,
+                "predicted_label": 1,
+                "is_correct": false,
+                "contains_negation": false,
+                "is_long_hypothesis": true,
+                "word_overlap": 5,
+                "unrelatedness_score": 0.8518518518518519,
+                "is_unrelated": true
+            },
+            {
+                "premise": "The musician played a melody that brought tears to the audience's eyes.",
+                "hypothesis": "The melody played by the musician, which was both hauntingly beautiful and evocative, moved the audience so deeply that many were seen wiping away tears by the end of the performance.",
+                "label": 0,
+                "predicted_label": 1,
+                "is_correct": false,
+                "contains_negation": false,
+                "is_long_hypothesis": true,
+                "word_overlap": 6,
+                "unrelatedness_score": 0.84375,
+                "is_unrelated": true
+            }
+        ]
+    },
+    "Word Overlap <= 3": {
+        "correct_examples": [
+            {
+                "premise": "The astrophysicist presented her findings on black hole dynamics at the conference.",
+                "hypothesis": "A chef prepared a multi-course gourmet dinner featuring molecular gastronomy techniques.",
+                "label": 2,
+                "predicted_label": 2,
+                "is_correct": true,
+                "contains_negation": true,
+                "is_long_hypothesis": false,
+                "word_overlap": 0,
+                "unrelatedness_score": 1.0,
+                "is_unrelated": true
+            },
+            {
+                "premise": "The politician discussed healthcare reform in his speech.",
+                "hypothesis": "A dancer performed a traditional folk routine at the festival.",
+                "label": 2,
+                "predicted_label": 2,
+                "is_correct": true,
+                "contains_negation": false,
+                "is_long_hypothesis": false,
+                "word_overlap": 0,
+                "unrelatedness_score": 0.9375,
+                "is_unrelated": true
+            },
+            {
+                "premise": "The librarian organized books by genre.",
+                "hypothesis": "A farmer harvested crops on a rainy morning.",
+                "label": 2,
+                "predicted_label": 2,
+                "is_correct": true,
+                "contains_negation": false,
+                "is_long_hypothesis": false,
+                "word_overlap": 0,
+                "unrelatedness_score": 1.0,
+                "is_unrelated": true
+            }
+        ],
+        "incorrect_examples": [
+            {
+                "premise": "The scientist conducted experiments in the lab.",
+                "hypothesis": "The lab conducted experiments with scientists.",
+                "label": 1,
+                "predicted_label": 0,
+                "is_correct": false,
+                "contains_negation": false,
+                "is_long_hypothesis": false,
+                "word_overlap": 3,
+                "unrelatedness_score": 0.6666666666666667,
+                "is_unrelated": false
+            },
+            {
+                "premise": "All dogs are mammals, and no mammals lay eggs.",
+                "hypothesis": "Some dogs lay eggs.",
+                "label": 2,
+                "predicted_label": 0,
+                "is_correct": false,
+                "contains_negation": false,
+                "is_long_hypothesis": false,
+                "word_overlap": 3,
+                "unrelatedness_score": 0.7,
+                "is_unrelated": false
+            },
+            {
+                "premise": "The garden was full of blooming roses and lilies.",
+                "hypothesis": "The garden contained flowers like tulips and daisies.",
+                "label": 1,
+                "predicted_label": 2,
+                "is_correct": false,
+                "contains_negation": false,
+                "is_long_hypothesis": false,
+                "word_overlap": 3,
+                "unrelatedness_score": 0.7857142857142857,
+                "is_unrelated": false
+            }
+        ]
+    }
+}
